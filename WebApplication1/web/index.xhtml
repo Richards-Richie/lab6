@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:inputText value="#{MyBean.name}" ></h:inputText>
+            <h:inputText value="#{MyBean.email}" >
+                <f:validator validatorId="test.Email"/>
+            </h:inputText>
+            <h:inputText value="#{MyBean.mobile}" >
+                <f:converter converterId="test2.Mobile"/>
+            </h:inputText>
+            <h:selectOneRadio value="#{MyBean.gender}">
+                <f:selectItem itemLabel="male" itemValue="male"/>
+                <f:selectItem itemLabel="female" itemValue="female"/>
+            </h:selectOneRadio>
+            <h:selectOneMenu id="program" value="#{MyBean.program}">
+                <f:selectItem itemLabel="select" itemValue="select"></f:selectItem>
+                <f:selectItem itemLabel="b.tech" itemValue="b.tech"></f:selectItem>
+                <f:selectItem itemLabel="m.tech" itemValue="m.tech"></f:selectItem>
+                <f:ajax execute="program" render="branch"/>
+            </h:selectOneMenu>
+            <h:selectOneMenu id="branch" value="#{MyBean.branch}">
+                <f:selectItem itemLabel="select" itemValue="select"></f:selectItem>
+                <f:selectItems value="#{MyBean.branches}"/>
+                <f:ajax execute="branch" render="section"/>
+            </h:selectOneMenu>
+            <h:selectOneMenu id="section" value="#{MyBean.section}">
+                <f:selectItems value="#{MyBean.sections}"/>
+            </h:selectOneMenu>
+            <h:commandButton value="submit" action="newxhtml"/>
+        </h:form>
+    </h:body>
+</html>
+
